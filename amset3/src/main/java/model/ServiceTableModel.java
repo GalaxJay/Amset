@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -11,20 +13,35 @@ import javax.swing.table.AbstractTableModel;
  * @author c.perrat
  */
 public class ServiceTableModel extends AbstractTableModel {
+    
+    private final String[] nomColonnes = {"id","Nom","Administratif"};
+    
+    private List<Service> services = new ArrayList<Service>();
+    
+    private ServiceDao serviceDao;
+
+    public ServiceTableModel() {
+        this.serviceDao = new ServiceDao();
+        this.refresh();
+    }
+    
+    public void refresh() {
+        this.services = serviceDao.getAll();
+    }
 
     @Override
     public int getRowCount() {
-        
+        return services.size();
     }
 
     @Override
     public int getColumnCount() {
-        
+        return this.nomColonnes.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        
+        return services.get(rowIndex).getId();
     }
     
 }

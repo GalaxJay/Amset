@@ -10,4 +10,37 @@ package model;
  */
 public class Service {
     
+    private int id;
+    private String nom;
+    private int administratif;
+    
+    public Service(int id, String nom, int administratif) {
+        this.id = id;
+        this.nom = nom;
+        this.administratif = administratif;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int isAdministratif() {
+        return administratif;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setAdministratif(int administratif) {
+        this.administratif = administratif;
+    }
 }

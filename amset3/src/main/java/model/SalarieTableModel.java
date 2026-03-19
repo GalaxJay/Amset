@@ -10,21 +10,4 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author c.bories
  */
-public class SalarieTableModel extends AbstractTableModel{
 
-    @Override
-    public int getRowCount() {
-        
-    }
-
-    @Override
-    public int getColumnCount() {
-        
-    }
-
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        
-    }
-    
-}
