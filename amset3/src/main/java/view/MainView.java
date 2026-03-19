@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author c.perrat
@@ -18,8 +20,8 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
         
-        this.mainPanel.add(this.serviceView);
-        this.mainPanel.add(this.salarieView);
+        this.mainPanel.add(this.serviceView, "cardService");
+        this.mainPanel.add(this.salarieView, "cardSalarie");
     }
     
     public SalarieView getSalarieView() {
@@ -41,18 +43,33 @@ public class MainView extends javax.swing.JFrame {
 
         mainPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        salarieMenu = new javax.swing.JMenu();
+        salarieItem = new javax.swing.JMenuItem();
+        serviceItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPanel.setLayout(new java.awt.CardLayout());
 
-        jMenu1.setText("Salariés");
-        jMenuBar1.add(jMenu1);
+        salarieMenu.setText("Vue");
 
-        jMenu2.setText("Services");
-        jMenuBar1.add(jMenu2);
+        salarieItem.setText("Salariés");
+        salarieItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salarieItemActionPerformed(evt);
+            }
+        });
+        salarieMenu.add(salarieItem);
+
+        serviceItem.setText("Services");
+        serviceItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviceItemActionPerformed(evt);
+            }
+        });
+        salarieMenu.add(serviceItem);
+
+        jMenuBar1.add(salarieMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -70,11 +87,26 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void serviceItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceItemActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel, "cardService");
+    }//GEN-LAST:event_serviceItemActionPerformed
+
+    private void salarieItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarieItemActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel, "cardSalarie");
+    }//GEN-LAST:event_salarieItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuItem salarieItem;
+    private javax.swing.JMenu salarieMenu;
+    private javax.swing.JMenuItem serviceItem;
     // End of variables declaration//GEN-END:variables
 }
