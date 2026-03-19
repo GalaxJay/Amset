@@ -4,17 +4,28 @@
  */
 package view;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 /**
  *
  * @author c.perrat
  */
-public class SalariePan extends javax.swing.JPanel {
+public class SalarieView extends javax.swing.JPanel {
 
+    private PropertyChangeSupport listeners;
+    
     /**
      * Creates new form SalariePan
      */
-    public SalariePan() {
+    public SalarieView() {
         initComponents();
+        
+        this.listeners = new PropertyChangeSupport(this);
+    }
+    
+    public void addPropertyChangeListener(PropertyChangeListener l) {
+        listeners.addPropertyChangeListener(l);
     }
 
     /**
@@ -26,15 +37,17 @@ public class SalariePan extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setPreferredSize(new java.awt.Dimension(740, 363));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 363, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

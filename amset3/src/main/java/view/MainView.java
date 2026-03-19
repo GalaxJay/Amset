@@ -9,12 +9,25 @@ package view;
  * @author c.perrat
  */
 public class MainView extends javax.swing.JFrame {
-
+    
+    private SalarieView salarieView = new SalarieView();
+    private ServiceView serviceView = new ServiceView();
     /**
      * Creates new form MainView
      */
     public MainView() {
         initComponents();
+        
+        this.mainPanel.add(this.serviceView);
+        this.mainPanel.add(this.salarieView);
+    }
+    
+    public SalarieView getSalarieView() {
+        return this.salarieView;
+    }
+    
+    public ServiceView getServiceView() {
+        return this.serviceView;
     }
 
     /**
@@ -26,14 +39,14 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainCard = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainCard.setLayout(new java.awt.CardLayout());
+        mainPanel.setLayout(new java.awt.CardLayout());
 
         jMenu1.setText("Salariés");
         jMenuBar1.add(jMenu1);
@@ -47,11 +60,11 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainCard, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainCard, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
         );
 
         pack();
@@ -62,6 +75,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel mainCard;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

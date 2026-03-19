@@ -4,17 +4,28 @@
  */
 package view;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 /**
  *
  * @author c.perrat
  */
-public class ServicePan extends javax.swing.JPanel {
+public class ServiceView extends javax.swing.JPanel {
+    
+    private PropertyChangeSupport listeners;
 
     /**
      * Creates new form ServicePan
      */
-    public ServicePan() {
+    public ServiceView() {
         initComponents();
+        
+        this.listeners = new PropertyChangeSupport(this);
+    }
+    
+    public void addPropertyChangeListener(PropertyChangeListener l) {
+        listeners.addPropertyChangeListener(l);
     }
 
     /**
@@ -30,11 +41,11 @@ public class ServicePan extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 363, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

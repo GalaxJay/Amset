@@ -12,5 +12,8 @@ public class MainControl {
     
     public MainControl(MainView view) {
         this.mainView = view;
+        
+        new SalarieControl(mainView.getSalarieView());
+        new ServiceControl(mainView.getServiceView());
     }
 }
