@@ -6,6 +6,7 @@ package view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import javax.swing.JOptionPane;
 import model.SalarieTableModel;
 
 /**
@@ -15,6 +16,7 @@ import model.SalarieTableModel;
 public class SalarieView extends javax.swing.JPanel {
 
     private PropertyChangeSupport listeners;
+    private SalarieEditPanel salarieEditPanel;
 
     /**
      * Creates new form SalariePan
@@ -23,6 +25,7 @@ public class SalarieView extends javax.swing.JPanel {
         initComponents();
 
         this.listeners = new PropertyChangeSupport(this);
+        salarieEditPanel = new SalarieEditPanel();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -124,7 +127,7 @@ public class SalarieView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAjoutSalarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjoutSalarieActionPerformed
-        // TODO add your handling code here:
+        listeners.firePropertyChange("openAjoutSalarie", null, null);
     }//GEN-LAST:event_btnAjoutSalarieActionPerformed
 
     public void hideSalarieIdColumn() {
@@ -135,6 +138,27 @@ public class SalarieView extends javax.swing.JPanel {
         this.tableSalaries.setModel(salarieTableModel);
     }
 
+    
+    public void openAjoutSal() {
+        String[] options = {"Valider", "Annuler"};
+
+        // La méthode la plus générale pour ouvrir une boite de dialogue...
+        int result = JOptionPane.showOptionDialog(
+                this, // le composant parent de la boite (ici, le JFrame)
+                this.salarieEditPanel, // contenu de la boite (ici, JPanel défini ailleurs)
+                "Ajout d'un nouveau salarié", // le titre de la boite
+                JOptionPane.OK_CANCEL_OPTION, // boutons à afficher (cf constantes JOptionPane)
+                JOptionPane.PLAIN_MESSAGE, // style du message
+                null, // pas d'icone à afficher
+                options, // texte des boutons
+                options[0] // bouton par défaut
+        );
+
+        if (result == JOptionPane.OK_OPTION) { // si l'utilisateur a validé...
+            // ...envoi de la notification "validAjoutModifEtudiant" au contrôleur
+            listeners.firePropertyChange("validAjoutSalarie", null, null);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjoutSalarie;
     private javax.swing.JButton btnModifSalarie;

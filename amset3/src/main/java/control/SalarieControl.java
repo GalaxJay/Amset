@@ -14,7 +14,7 @@ import view.SalarieView;
  * @author c.perrat
  */
 public class SalarieControl implements PropertyChangeListener {
-    
+
     private SalarieView salarieView;
     private SalarieTableModel salarieTableModel;
 
@@ -24,12 +24,16 @@ public class SalarieControl implements PropertyChangeListener {
         this.salarieTableModel = new SalarieTableModel();
         this.salarieView.setSalarieTableModel(this.salarieTableModel);
         this.salarieView.hideSalarieIdColumn();
-        
+
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        
+        switch (evt.getPropertyName()) {
+            case "openAjoutSalarie":
+                this.salarieView.openAjoutSal();
+                break;
+        }
     }
-    
+
 }
