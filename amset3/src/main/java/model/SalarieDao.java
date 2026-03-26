@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +37,7 @@ public class SalarieDao {
                 String nom = res.getString("nom");
                 String prenom = res.getString("prenom");
                 String fonction = res.getString("fonction");
-                String dateNaissance = res.getString("date_naissance");
+                Date dateNaissance = res.getDate("date_naissance");
                 int serviceId = res.getInt("service_id");
                 
 

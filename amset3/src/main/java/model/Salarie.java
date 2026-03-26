@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author c.bories
@@ -13,10 +15,10 @@ public class Salarie {
     String nom;
     String prenom;
     String fonction;
-    String date;
+    Date date;
     int serviceId;
 
-    public Salarie(int id, String nom,String prenom, String fonction, String date, int serviceId){
+    public Salarie(int id, String nom,String prenom, String fonction, Date date, int serviceId){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;
@@ -41,7 +43,7 @@ public class Salarie {
         return fonction;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

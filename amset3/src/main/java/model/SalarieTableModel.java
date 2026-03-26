@@ -31,13 +31,34 @@ public class SalarieTableModel extends AbstractTableModel{
     public int getColumnCount() {
       return this.nomColonnes.length;  
     }
+    
+    @Override
+    public String getColumnName(int index){
+        return this.nomColonnes[index];
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return this.salaries.get(rowIndex).getId();
+      switch (columnIndex){
+          case 0:
+              return this.salaries.get(rowIndex).getId();
+           case 1:
+              return this.salaries.get(rowIndex).getNom();
+           case 2:
+              return this.salaries.get(rowIndex).getPrenom(); 
+           case 3:
+              return this.salaries.get(rowIndex).getFonction(); 
+           case 4:
+              return this.salaries.get(rowIndex).getDate(); 
+           case 5:
+              return this.salaries.get(rowIndex).getServiceId(); 
+          default:
+              return null;
+             
+      }
     }
 
     private void refresh() {
-        this.salDao.getAll();
+        this.salaries= this.salDao.getAll();
     }
 }

@@ -21,9 +21,9 @@ public class SalarieControl implements PropertyChangeListener {
     public SalarieControl(SalarieView view) throws Exception {
         this.salarieView = view;
         this.salarieView.addPropertyChangeListener(this);
-        this.salarieView.hideSalarieIdColumn();
         this.salarieTableModel = new SalarieTableModel();
         this.salarieView.setSalarieTableModel(this.salarieTableModel);
+        this.salarieView.hideSalarieIdColumn();
         
     }
 
