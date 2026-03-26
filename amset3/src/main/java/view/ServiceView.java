@@ -21,7 +21,7 @@ public class ServiceView extends javax.swing.JPanel {
      */
     public ServiceView() {
         initComponents();
-
+        
         this.listeners = new PropertyChangeSupport(this);
     }
 
@@ -30,7 +30,11 @@ public class ServiceView extends javax.swing.JPanel {
     }
 
     public void setServiceTableModel(ServiceTableModel serTableModel) {
-        this.salarieTable.setModel(serTableModel);
+        this.serviceTable.setModel(serTableModel);
+    }
+    
+    public void remakeTable() {
+        this.serviceTable.removeColumn(this.serviceTable.getColumnModel().getColumn(0));
     }
 
     /**
@@ -43,27 +47,44 @@ public class ServiceView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        salarieTable = new javax.swing.JTable();
+        serviceTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnAjoutService = new javax.swing.JButton();
         btnModifService = new javax.swing.JButton();
         btnSupprService = new javax.swing.JButton();
 
-        salarieTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        salarieTable.setModel(new javax.swing.table.DefaultTableModel(
+        serviceTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        serviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nom", "Administratif"
+                "id", "Nom", "Administratif"
             }
-        ));
-        jScrollPane1.setViewportView(salarieTable);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        serviceTable.setRowHeight(24);
+        jScrollPane1.setViewportView(serviceTable);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Liste des services");
 
         btnAjoutService.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -88,12 +109,9 @@ public class ServiceView extends javax.swing.JPanel {
                         .addComponent(btnAjoutService, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSupprService, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(184, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +138,7 @@ public class ServiceView extends javax.swing.JPanel {
     private javax.swing.JButton btnSupprService;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable salarieTable;
+    private javax.swing.JTable serviceTable;
     // End of variables declaration//GEN-END:variables
 
 }

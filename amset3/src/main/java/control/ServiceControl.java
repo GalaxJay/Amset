@@ -27,6 +27,8 @@ public class ServiceControl implements PropertyChangeListener {
         this.serTableModel = new ServiceTableModel();
         
         this.serviceView.setServiceTableModel(this.serTableModel);
+        
+        this.serviceView.remakeTable();
     }
 
     @Override

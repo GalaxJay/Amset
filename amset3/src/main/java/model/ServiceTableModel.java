@@ -38,10 +38,24 @@ public class ServiceTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return this.nomColonnes.length;
     }
+    
+    @Override
+    public String getColumnName(int index) {
+        return this.nomColonnes[index];
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return services.get(rowIndex).getId();
+        switch (columnIndex) {
+            case 0 :
+                return this.services.get(rowIndex).getId();
+            case 1 :
+                return this.services.get(rowIndex).getNom();
+            case 2 :
+                return this.services.get(rowIndex).isAdministratif();
+            default :
+                return null;
+        }
     }
     
 }
