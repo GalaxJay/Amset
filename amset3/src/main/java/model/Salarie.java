@@ -9,5 +9,45 @@ package model;
  * @author c.bories
  */
 public class Salarie {
+    int id;
+    String nom;
+    String prenom;
+    String fonction;
+    String date;
+    int serviceId;
+
+    public Salarie(int id, String nom,String prenom, String fonction, String date, int serviceId){
+        this.id=id;
+        this.nom=nom;
+        this.prenom=prenom;
+        this.fonction=fonction;
+        this.date=date;
+        this.serviceId=serviceId;
+    }    
     
-}
+    public int getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getFonction() {
+        return fonction;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public int getServiceId() {
+        return serviceId;
+    }
+    
+    }
+

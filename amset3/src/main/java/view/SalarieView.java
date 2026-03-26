@@ -6,6 +6,7 @@ package view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import model.SalarieTableModel;
 
 /**
  *
@@ -14,16 +15,16 @@ import java.beans.PropertyChangeSupport;
 public class SalarieView extends javax.swing.JPanel {
 
     private PropertyChangeSupport listeners;
-    
+
     /**
      * Creates new form SalariePan
      */
     public SalarieView() {
         initComponents();
-        
+
         this.listeners = new PropertyChangeSupport(this);
     }
-    
+
     public void addPropertyChangeListener(PropertyChangeListener l) {
         listeners.addPropertyChangeListener(l);
     }
@@ -38,7 +39,7 @@ public class SalarieView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableSalarie = new javax.swing.JTable();
+        tableSalaries = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnSupprSalarie = new javax.swing.JButton();
         btnAjoutSalarie = new javax.swing.JButton();
@@ -46,26 +47,26 @@ public class SalarieView extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(740, 363));
 
-        tableSalarie.setModel(new javax.swing.table.DefaultTableModel(
+        tableSalaries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nom", "Prénom", "Fonction", "Date de naissance", "Service"
+                "Id", "Nom", "Prénom", "Fonction", "Date de naissance", "Service"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableSalarie);
+        jScrollPane1.setViewportView(tableSalaries);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Liste des salariés");
@@ -124,6 +125,13 @@ public class SalarieView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAjoutSalarieActionPerformed
 
+    public void hideSalarieIdColumn() {
+        this.tableSalaries.removeColumn(this.tableSalaries.getColumnModel().getColumn(0));
+    }
+    
+    public void setSalarieTableModel(SalarieTableModel salarieTableModel){
+        this.tableSalaries.setModel(salarieTableModel);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjoutSalarie;
@@ -131,6 +139,6 @@ public class SalarieView extends javax.swing.JPanel {
     private javax.swing.JButton btnSupprSalarie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableSalarie;
+    private javax.swing.JTable tableSalaries;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,7 +10,7 @@ public class MainControl {
     
     private MainView mainView;
     
-    public MainControl(MainView view) {
+    public MainControl(MainView view) throws Exception {
         this.mainView = view;
         
         new SalarieControl(mainView.getSalarieView());

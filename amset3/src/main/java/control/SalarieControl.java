@@ -6,6 +6,7 @@ package control;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import model.SalarieTableModel;
 import view.SalarieView;
 
 /**
@@ -15,11 +16,15 @@ import view.SalarieView;
 public class SalarieControl implements PropertyChangeListener {
     
     private SalarieView salarieView;
+    private SalarieTableModel salarieTableModel;
 
-    public SalarieControl(SalarieView view) {
+    public SalarieControl(SalarieView view) throws Exception {
         this.salarieView = view;
-        
         this.salarieView.addPropertyChangeListener(this);
+        this.salarieView.hideSalarieIdColumn();
+        this.salarieTableModel = new SalarieTableModel();
+        this.salarieView.setSalarieTableModel(this.salarieTableModel);
+        
     }
 
     @Override

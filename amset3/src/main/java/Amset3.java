@@ -1,5 +1,7 @@
 
 import control.MainControl;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.MainView;
 
 /*
@@ -20,7 +22,11 @@ public class Amset3 {
                 MainView view = new MainView();
                
                 
-                MainControl mainControl = new MainControl(view);
+                try {
+                    MainControl mainControl = new MainControl(view);
+                } catch (Exception ex) {
+                    Logger.getLogger(Amset3.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 view.setVisible(true);
             }
