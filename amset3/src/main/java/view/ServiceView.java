@@ -81,6 +81,8 @@ public class ServiceView extends javax.swing.JPanel {
             }
         });
         serviceTable.setRowHeight(24);
+        serviceTable.getTableHeader().setResizingAllowed(false);
+        serviceTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(serviceTable);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -124,8 +126,8 @@ public class ServiceView extends javax.swing.JPanel {
                     .addComponent(btnSupprService)
                     .addComponent(btnAjoutService))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("");
