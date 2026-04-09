@@ -6,6 +6,9 @@ package view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import model.ServiceTableModel;
 
 /**
@@ -16,13 +19,98 @@ public class ServiceView extends javax.swing.JPanel {
 
     private PropertyChangeSupport listeners;
 
+    private ServiceEditPanel srvEditPan;
+    
+    private SupprPanel supprPan;
+
     /**
      * Creates new form ServicePan
      */
     public ServiceView() {
         initComponents();
-        
+
+        this.srvEditPan = new ServiceEditPanel();
+        this.supprPan = new SupprPanel();
         this.listeners = new PropertyChangeSupport(this);
+    }
+
+    public String getSrvName() {
+        return this.srvEditPan.getNameService();
+    }
+
+    public int getSrvIsAdmini() {
+        return this.srvEditPan.getIsAdmini();
+    }
+
+    public void setModifIsAdmini(int isA) {
+        this.srvEditPan.setIsAdmini(isA == 1 ? true : false);
+    }
+
+    public void setModifName(String name) {
+        this.srvEditPan.setServiceNameInput(name);
+    }
+
+    public String[] getSelectedServiceRow() {
+        int row = this.serviceTable.getSelectedRow();
+        String id = this.serviceTable.getModel().getValueAt(row, 0).toString();
+        String name = this.serviceTable.getModel().getValueAt(row, 1).toString();
+        String is = this.serviceTable.getModel().getValueAt(row, 2).toString();
+        String[] selected = {id, name, is};
+
+        return selected;
+    }
+
+    public int getSelectedId() {
+        int row = this.serviceTable.getSelectedRow();
+        return Integer.parseInt(this.serviceTable.getModel().getValueAt(row, 0).toString());
+    }
+
+    public void openDialogueEditSrv(String editMeth) {
+        String[] options = {editMeth == "ajout" ? "Ajouter" : "Modifier", "Annuler"};
+
+        UIManager.put("OptionPane.buttonOrientation", SwingConstants.CENTER);
+
+        int result = JOptionPane.showOptionDialog(
+                this,
+                this.srvEditPan,
+                editMeth == "ajout" ? "Ajout d'un nouveau service" : "Modification d'un service",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            if (editMeth == "ajout") {
+                listeners.firePropertyChange("validAjoutService", null, null);
+            } else {
+                listeners.firePropertyChange("validModifService", null, null);
+            }
+            this.srvEditPan.setServiceNameInput("");
+            this.srvEditPan.clearAdmini();
+        }
+    }
+    
+    public void openSupprDialog() {
+        String[] options = {"Oui", "Non"};
+
+        UIManager.put("OptionPane.buttonOrientation", SwingConstants.CENTER);
+
+        int result = JOptionPane.showOptionDialog(
+                this,
+                this.supprPan,
+                null,
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            listeners.firePropertyChange("validSupprService", null, null);
+        }
     }
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -32,8 +120,8 @@ public class ServiceView extends javax.swing.JPanel {
     public void setServiceTableModel(ServiceTableModel serTableModel) {
         this.serviceTable.setModel(serTableModel);
     }
-    
-    public void remakeTable() {
+
+    public void hideColumn() {
         this.serviceTable.removeColumn(this.serviceTable.getColumnModel().getColumn(0));
     }
 
@@ -91,12 +179,27 @@ public class ServiceView extends javax.swing.JPanel {
 
         btnAjoutService.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAjoutService.setText("Ajouter");
+        btnAjoutService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjoutServiceActionPerformed(evt);
+            }
+        });
 
         btnModifService.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnModifService.setText("Modifier");
+        btnModifService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifServiceActionPerformed(evt);
+            }
+        });
 
         btnSupprService.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSupprService.setText("Supprimer");
+        btnSupprService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprServiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,6 +235,21 @@ public class ServiceView extends javax.swing.JPanel {
 
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAjoutServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjoutServiceActionPerformed
+        // TODO add your handling code here:
+        this.listeners.firePropertyChange("AjoutService", null, null);
+    }//GEN-LAST:event_btnAjoutServiceActionPerformed
+
+    private void btnModifServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifServiceActionPerformed
+        // TODO add your handling code here:
+        if (this.serviceTable.getSelectedRow() > -1) this.listeners.firePropertyChange("ModifService", null, null);
+    }//GEN-LAST:event_btnModifServiceActionPerformed
+
+    private void btnSupprServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprServiceActionPerformed
+        // TODO add your handling code here:
+        this.listeners.firePropertyChange("SupprService", null, null);
+    }//GEN-LAST:event_btnSupprServiceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

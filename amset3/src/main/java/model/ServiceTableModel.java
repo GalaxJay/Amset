@@ -27,6 +27,22 @@ public class ServiceTableModel extends AbstractTableModel {
     
     public void refresh() {
         this.services = serviceDao.getAll();
+        this.fireTableDataChanged();
+    }
+    
+    public void addService(String nom, int admini) {
+        this.serviceDao.insertSrv(nom, admini);
+        this.refresh();
+    }
+    
+    public void modifService(int id, String name, int isA) {
+        this.serviceDao.updateSrv(id, name, isA);
+        this.refresh();
+    }
+    
+    public void supprService(int id) {
+        this.serviceDao.deleteSrv(id);
+        this.refresh();
     }
 
     @Override
@@ -57,5 +73,6 @@ public class ServiceTableModel extends AbstractTableModel {
                 return null;
         }
     }
+    
     
 }
