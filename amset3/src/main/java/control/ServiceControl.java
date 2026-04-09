@@ -18,11 +18,11 @@ public class ServiceControl implements PropertyChangeListener {
     private ServiceView serviceView;
     private ServiceTableModel srvTableModel;
     private int idSelected;
-    
+
     public ServiceControl(ServiceView view) {
         this.serviceView = view;
         this.serviceView.addPropertyChangeListener(this);
-        
+
         this.srvTableModel = new ServiceTableModel();
         this.serviceView.setServiceTableModel(this.srvTableModel);
         this.serviceView.hideColumn();
@@ -31,26 +31,27 @@ public class ServiceControl implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "AjoutService" :
+            case "AjoutService":
+                this.serviceView.clearDialog();
                 this.serviceView.openDialogueEditSrv("ajout");
                 break;
-            case "validAjoutService" :
+            case "validAjoutService":
                 this.srvTableModel.addService(this.serviceView.getSrvName(), this.serviceView.getSrvIsAdmini());
                 break;
-            case "ModifService" :
+            case "ModifService":
                 String[] value = this.serviceView.getSelectedServiceRow();
                 idSelected = Integer.parseInt(value[0]);
                 this.serviceView.setModifName(value[1]);
                 this.serviceView.setModifIsAdmini(Integer.parseInt(value[2]));
                 this.serviceView.openDialogueEditSrv("modif");
                 break;
-            case "validModifService" :
+            case "validModifService":
                 this.srvTableModel.modifService(idSelected, this.serviceView.getSrvName(), this.serviceView.getSrvIsAdmini());
                 break;
-            case "SupprService" :
+            case "SupprService":
                 this.serviceView.openSupprDialog();
                 break;
-            case "validSupprService" :
+            case "validSupprService":
                 System.out.println(this.serviceView.getSelectedId());
                 this.srvTableModel.supprService(this.serviceView.getSelectedId());
                 break;

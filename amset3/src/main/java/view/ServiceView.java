@@ -20,7 +20,7 @@ public class ServiceView extends javax.swing.JPanel {
     private PropertyChangeSupport listeners;
 
     private ServiceEditPanel srvEditPan;
-    
+
     private SupprPanel supprPan;
 
     /**
@@ -87,11 +87,9 @@ public class ServiceView extends javax.swing.JPanel {
             } else {
                 listeners.firePropertyChange("validModifService", null, null);
             }
-            this.srvEditPan.setServiceNameInput("");
-            this.srvEditPan.clearAdmini();
         }
     }
-    
+
     public void openSupprDialog() {
         String[] options = {"Oui", "Non"};
 
@@ -123,6 +121,11 @@ public class ServiceView extends javax.swing.JPanel {
 
     public void hideColumn() {
         this.serviceTable.removeColumn(this.serviceTable.getColumnModel().getColumn(0));
+    }
+
+    public void clearDialog() {
+        this.srvEditPan.setServiceNameInput("");
+        this.srvEditPan.clearAdmini();
     }
 
     /**
@@ -243,7 +246,8 @@ public class ServiceView extends javax.swing.JPanel {
 
     private void btnModifServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifServiceActionPerformed
         // TODO add your handling code here:
-        if (this.serviceTable.getSelectedRow() > -1) this.listeners.firePropertyChange("ModifService", null, null);
+        if (this.serviceTable.getSelectedRow() > -1)
+            this.listeners.firePropertyChange("ModifService", null, null);
     }//GEN-LAST:event_btnModifServiceActionPerformed
 
     private void btnSupprServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprServiceActionPerformed
