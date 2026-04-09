@@ -17,6 +17,7 @@ public class Salarie {
     String fonction;
     Date date;
     int serviceId;
+    String serviceNom;
 
     public Salarie(int id, String nom,String prenom, String fonction, Date date, int serviceId){
         this.id=id;
@@ -25,31 +26,42 @@ public class Salarie {
         this.fonction=fonction;
         this.date=date;
         this.serviceId=serviceId;
+        
     }    
     
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     public String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
 
     public String getFonction() {
-        return fonction;
+        return this.fonction;
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public int getServiceId() {
-        return serviceId;
+        return this.serviceId;
     }
+    
+    public String getServiceNom(){
+        return this.serviceNom;
+    }
+    
+    public void setServiceNom(String serviceNom){
+        this.serviceNom=serviceNom;
+    }
+    
+   
     
     }
 

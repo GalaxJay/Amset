@@ -14,12 +14,14 @@ import javax.swing.table.AbstractTableModel;
  * @author c.bories
  */
 public class SalarieTableModel extends AbstractTableModel{
-    private final String[] nomColonnes = {"id", "Nom", "Prenom", "Fonction","DateNaissance","ServiceId"};
+    private final String[] nomColonnes = {"id", "Nom", "Prenom", "Fonction","Date de Naissance","ServiceId","Service"};
     private List<Salarie> salaries = new ArrayList<Salarie>();
     private SalarieDao salDao;
+    private ServiceDao srvDao;
     
     public SalarieTableModel() throws Exception {
         this.salDao = new SalarieDao();
+        this.srvDao = new ServiceDao();
         this.refresh();
 
     }
@@ -54,6 +56,8 @@ public class SalarieTableModel extends AbstractTableModel{
               return this.salaries.get(rowIndex).getDate(); 
            case 5:
               return this.salaries.get(rowIndex).getServiceId(); 
+           case 6:
+               return this.salaries.get(rowIndex).getServiceNom();
           default:
               return null;
              
@@ -77,5 +81,8 @@ public class SalarieTableModel extends AbstractTableModel{
 
     private void refresh() {
         this.salaries= this.salDao.getAll();
+        for (Salarie s : salaries){
+            s.setServiceNom(this.srvDao.getNameById(s.getServiceId()));
+        }
     }
 }

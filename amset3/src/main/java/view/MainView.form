@@ -6,11 +6,14 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="salarieMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Vue"/>
+            <Property name="text" type="java.lang.String" value="Afficher"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="salarieItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+W"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Salari&#xe9;s"/>
               </Properties>
               <Events>
@@ -19,6 +22,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="serviceItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+X"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Services"/>
               </Properties>
               <Events>

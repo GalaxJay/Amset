@@ -30,6 +30,7 @@ public class SalarieView extends javax.swing.JPanel {
         initComponents();
 
         this.listeners = new PropertyChangeSupport(this);
+        this.supprPan = new SupprPanel();
         salarieEditPanel = new SalarieEditPanel();
     }
 
@@ -57,17 +58,17 @@ public class SalarieView extends javax.swing.JPanel {
 
         tableSalaries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nom", "Prénom", "Fonction", "Date de naissance", "Service"
+                "Id", "Nom", "Prénom", "Fonction", "Date de naissance", "Service", "ServiceNom"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -106,34 +107,33 @@ public class SalarieView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(264, 264, 264))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAjoutSalarie)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnModifSalarie)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnSupprSalarie)
-                        .addGap(195, 195, 195))))
+                .addContainerGap(233, Short.MAX_VALUE)
+                .addComponent(btnAjoutSalarie)
+                .addGap(34, 34, 34)
+                .addComponent(btnModifSalarie)
+                .addGap(35, 35, 35)
+                .addComponent(btnSupprSalarie)
+                .addContainerGap(206, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSupprSalarie)
                     .addComponent(btnAjoutSalarie)
                     .addComponent(btnModifSalarie))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
@@ -155,6 +155,10 @@ public class SalarieView extends javax.swing.JPanel {
 
     public void hideSalarieIdColumn() {
         this.tableSalaries.removeColumn(this.tableSalaries.getColumnModel().getColumn(0));
+    }
+    
+    public void hideServiceIdColumn() {
+        this.tableSalaries.removeColumn(this.tableSalaries.getColumnModel().getColumn(5));
     }
     
     public void setSalarieTableModel(SalarieTableModel salarieTableModel){

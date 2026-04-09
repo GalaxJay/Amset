@@ -19,7 +19,7 @@ import javax.swing.event.ListDataListener;
 public class ServiceComboBoxModel implements ComboBoxModel{
     
     private List<Service> services = new ArrayList<Service>();
-    private Object selectedItem;
+    private Service selectedItem;
     private int selecteItemId;
     
     private ServiceDao serviceDao;
@@ -37,7 +37,7 @@ public class ServiceComboBoxModel implements ComboBoxModel{
 
     @Override
     public void setSelectedItem(Object anItem) {
-        this.selectedItem=anItem;
+        this.selectedItem=(Service)anItem;
         
     }
 

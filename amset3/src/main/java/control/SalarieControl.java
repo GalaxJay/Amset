@@ -37,6 +37,7 @@ public class SalarieControl implements PropertyChangeListener {
         this.serviceComboBoxModel = new ServiceComboBoxModel();
         this.salarieView.setSalarieTableModel(this.salarieTableModel);
         this.salarieView.setSalarieComboBoxModel(serviceComboBoxModel);
+        this.salarieView.hideServiceIdColumn();
         this.salarieView.hideSalarieIdColumn();
         
     

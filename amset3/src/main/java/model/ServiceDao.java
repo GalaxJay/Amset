@@ -88,14 +88,19 @@ public class ServiceDao {
     }
 
     public String getNameById(int id) {
+         
         try {
             String query = "SELECT nom FROM service WHERE id = ?";
             PreparedStatement ps = this.connexion.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet res = ps.executeQuery();
-
-            String serviceName = res.getString("nom");
-
+            String serviceName= null;
+           
+            while (res.next()) {
+                
+                serviceName = res.getString("nom");
+   
+            }
             return serviceName;
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDao.class.getName()).log(Level.SEVERE, null, ex);
