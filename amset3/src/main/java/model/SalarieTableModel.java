@@ -69,6 +69,11 @@ public class SalarieTableModel extends AbstractTableModel{
         this.salDao.updateSalarie(id, salNom, salPrenom, salFonction, date, salIdService);
         this.refresh();
     }
+    
+    public void supprSalarie(int id) {
+        this.salDao.deleteSalarie(id);
+        this.refresh();
+    }
 
     private void refresh() {
         this.salaries= this.salDao.getAll();

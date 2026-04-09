@@ -64,6 +64,9 @@ public class SalarieControl implements PropertyChangeListener {
                 this.salarieView.setSelectedService(this.serviceComboBoxModel.getService(Integer.parseInt(value[5])));
                 this.salarieView.openModifSal();
                 break;
+            case "openSupprSalarie":
+                this.salarieView.openSupprDialog();
+                break;
             case "validAjoutSalarie": 
                 try {
                     parsedUtilDate = formater.parse(this.salarieView.getSalDate());
@@ -84,6 +87,10 @@ public class SalarieControl implements PropertyChangeListener {
                 
                 this.salarieTableModel.modifSalarie(idSelected,this.salarieView.getSalNom() , this.salarieView.getSalPrenom(), this.salarieView.getSalFonction(), sqltDate, this.serviceComboBoxModel.getElementAt(this.salarieView.getSalServiceIndex()).getId());
                 break;
+            case "validSupprSalarie":
+                this.salarieTableModel.supprSalarie(this.salarieView.getSelectedId());
+                break;
+            
         }
     }
 }

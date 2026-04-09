@@ -88,6 +88,17 @@ public class SalarieDao {
             Logger.getLogger(ServiceDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void deleteSalarie(int id) {
+        try {
+            String query = "DELETE FROM salarie WHERE id = ?";
+            PreparedStatement ps = this.connexion.prepareStatement(query);
+            ps.setInt(1, id);
+            int n = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
     
 

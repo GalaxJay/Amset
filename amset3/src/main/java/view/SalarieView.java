@@ -7,6 +7,8 @@ package view;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import model.SalarieTableModel;
 import model.Service;
 import model.ServiceComboBoxModel;
@@ -19,6 +21,7 @@ public class SalarieView extends javax.swing.JPanel {
 
     private PropertyChangeSupport listeners;
     private SalarieEditPanel salarieEditPanel;
+    private SupprPanel supprPan;
 
     /**
      * Creates new form SalariePan
@@ -78,6 +81,11 @@ public class SalarieView extends javax.swing.JPanel {
         jLabel1.setText("Liste des salariés");
 
         btnSupprSalarie.setText("Supprimer");
+        btnSupprSalarie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprSalarieActionPerformed(evt);
+            }
+        });
 
         btnAjoutSalarie.setText("Ajouter");
         btnAjoutSalarie.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +149,10 @@ public class SalarieView extends javax.swing.JPanel {
         if (this.tableSalaries.getSelectedRow() > -1) listeners.firePropertyChange("openModifSalarie", null, null);
     }//GEN-LAST:event_btnModifSalarieActionPerformed
 
+    private void btnSupprSalarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprSalarieActionPerformed
+       this.listeners.firePropertyChange("openSupprSalarie", null, null);
+    }//GEN-LAST:event_btnSupprSalarieActionPerformed
+
     public void hideSalarieIdColumn() {
         this.tableSalaries.removeColumn(this.tableSalaries.getColumnModel().getColumn(0));
     }
@@ -174,6 +186,11 @@ public class SalarieView extends javax.swing.JPanel {
         return this.salarieEditPanel.getServiceIndex();
     }
     
+    public int getSelectedId() {
+        int row = this.tableSalaries.getSelectedRow();
+        return Integer.parseInt(this.tableSalaries.getModel().getValueAt(row, 0).toString());
+    }
+    
    public void setSalarieNom(String nom){
        this.salarieEditPanel.setNomText(nom);
    }
@@ -193,6 +210,7 @@ public class SalarieView extends javax.swing.JPanel {
    public void setSelectedService(Service service){
        this.salarieEditPanel.setSelectedService(service);
    }
+   
    
     
     public String[] getSelectedSalarieRow() {
@@ -251,6 +269,28 @@ public class SalarieView extends javax.swing.JPanel {
             listeners.firePropertyChange("validModifSalarie", null, null);
         } 
     }
+    
+    public void openSupprDialog() {
+        String[] options = {"Oui", "Non"};
+
+        UIManager.put("OptionPane.buttonOrientation", SwingConstants.CENTER);
+
+        int result = JOptionPane.showOptionDialog(
+                this,
+                this.supprPan,
+                null,
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (result == JOptionPane.OK_OPTION) {
+            listeners.firePropertyChange("validSupprSalarie", null, null);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjoutSalarie;
     private javax.swing.JButton btnModifSalarie;
