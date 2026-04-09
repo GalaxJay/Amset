@@ -52,7 +52,6 @@ public class ServiceControl implements PropertyChangeListener {
                 this.serviceView.openSupprDialog();
                 break;
             case "validSupprService":
-                System.out.println(this.serviceView.getSelectedId());
                 this.srvTableModel.supprService(this.serviceView.getSelectedId());
                 break;
         }

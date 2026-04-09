@@ -22,11 +22,14 @@ public class ServiceEditPanel extends javax.swing.JPanel {
     }
     
     public int getIsAdmini() {
-        String isAdmini = this.adminiBtnGroup.getSelection().getActionCommand();
+        String isAdmini = null;
+        if (this.adminiBtnGroup.getSelection() != null) isAdmini = this.adminiBtnGroup.getSelection().getActionCommand();
         if (isAdmini == "true") {
             return 1;
-        } else {
+        } else if (isAdmini == "false"){
             return 0;
+        } else {
+            return 3;
         }
     }
     

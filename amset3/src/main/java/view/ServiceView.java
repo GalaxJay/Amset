@@ -83,7 +83,7 @@ public class ServiceView extends javax.swing.JPanel {
 
         if (result == JOptionPane.OK_OPTION) {
             if (editMeth == "ajout") {
-                listeners.firePropertyChange("validAjoutService", null, null);
+                if (this.srvEditPan.getIsAdmini() != 3) listeners.firePropertyChange("validAjoutService", null, null);
             } else {
                 listeners.firePropertyChange("validModifService", null, null);
             }
@@ -246,13 +246,12 @@ public class ServiceView extends javax.swing.JPanel {
 
     private void btnModifServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifServiceActionPerformed
         // TODO add your handling code here:
-        if (this.serviceTable.getSelectedRow() > -1)
-            this.listeners.firePropertyChange("ModifService", null, null);
+        if (this.serviceTable.getSelectedRow() > -1) this.listeners.firePropertyChange("ModifService", null, null);
     }//GEN-LAST:event_btnModifServiceActionPerformed
 
     private void btnSupprServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprServiceActionPerformed
         // TODO add your handling code here:
-        this.listeners.firePropertyChange("SupprService", null, null);
+        if (this.serviceTable.getSelectedRow() > -1) this.listeners.firePropertyChange("SupprService", null, null);
     }//GEN-LAST:event_btnSupprServiceActionPerformed
 
 
