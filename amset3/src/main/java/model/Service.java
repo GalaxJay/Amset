@@ -43,4 +43,9 @@ public class Service {
     public void setAdministratif(int administratif) {
         this.administratif = administratif;
     }
+    
+    @Override
+    public String toString(){
+        return this.nom;
+    }
 }

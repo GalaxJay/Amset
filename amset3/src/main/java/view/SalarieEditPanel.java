@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.util.List;
+import model.Service;
+import model.ServiceComboBoxModel;
+
 /**
  *
  * @author c.bories
@@ -15,6 +19,7 @@ public class SalarieEditPanel extends javax.swing.JPanel {
      */
     public SalarieEditPanel() {
         initComponents();
+       
     }
 
     /**
@@ -59,7 +64,6 @@ public class SalarieEditPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Fonction:");
 
-        comboServiceSalarie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboServiceSalarie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboServiceSalarieActionPerformed(evt);
@@ -134,9 +138,38 @@ public class SalarieEditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_textFonctionActionPerformed
 
     private void comboServiceSalarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboServiceSalarieActionPerformed
+       this.comboServiceSalarie.getModel();
+        this.comboServiceSalarie.getModel().getElementAt(this.comboServiceSalarie.getSelectedIndex());
+        System.out.print(this.comboServiceSalarie.getSelectedIndex());
+       
         
     }//GEN-LAST:event_comboServiceSalarieActionPerformed
 
+    public void setSalarieComboBoxModel(ServiceComboBoxModel serviceComboBoxModel){
+        this.comboServiceSalarie.setModel(serviceComboBoxModel);
+    }
+    
+    public String getNom(){
+        return this.textNom.getText();
+    }
+    
+    public String getPrenom(){
+        return this.textPrenom.getText();
+    }
+    
+    public String getFonction(){
+        return this.textFonction.getText();
+    }
+    
+    public String getDate(){
+        return this.textDateNaissance.getText();
+    }
+    
+    public int getServiceId(){
+       return Integer.parseInt(this.comboServiceSalarie.getModel().getElementAt(this.comboServiceSalarie.getSelectedIndex()));
+       
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboServiceSalarie;

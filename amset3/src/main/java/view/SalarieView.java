@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import javax.swing.JOptionPane;
 import model.SalarieTableModel;
+import model.ServiceComboBoxModel;
 
 /**
  *
@@ -137,7 +138,30 @@ public class SalarieView extends javax.swing.JPanel {
     public void setSalarieTableModel(SalarieTableModel salarieTableModel){
         this.tableSalaries.setModel(salarieTableModel);
     }
-
+    
+    public void setSalarieComboBoxModel(ServiceComboBoxModel serviceComboBoxModel){
+        this.salarieEditPanel.setSalarieComboBoxModel(serviceComboBoxModel);
+    }
+    
+    public String getSalNom(){
+        return this.salarieEditPanel.getNom();
+    }
+    
+    public String getSalPrenom(){
+        return this.salarieEditPanel.getPrenom();
+    }
+    
+    public String getSalFonction(){
+        return this.salarieEditPanel.getFonction();
+    }
+    
+    public String getSalDate(){
+        return this.salarieEditPanel.getDate();
+    }
+    
+    public int getSalServiceId(){
+        return this.salarieEditPanel.getServiceId();
+    }
     
     public void openAjoutSal() {
         String[] options = {"Valider", "Annuler"};

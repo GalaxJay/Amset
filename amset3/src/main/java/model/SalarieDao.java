@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,8 +51,25 @@ public class SalarieDao {
         }
 
     }
+    
+    public void addSalarie(String nom, String prenom, String fonction,Date date,int serviceId) {
+        try {
+            String query = "insert into salarie( nom, prenom, fonction, date, serviceId) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement ps = this.connexion.prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setString(2 , prenom);
+            ps.setString(3 , fonction);
+            ps.setDate(4, date);
+            ps.setInt(5 , serviceId);
+            int n = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SalarieDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
 
 
     }
+}
     
 
