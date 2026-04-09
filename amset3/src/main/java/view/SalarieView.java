@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import javax.swing.JOptionPane;
 import model.SalarieTableModel;
+import model.Service;
 import model.ServiceComboBoxModel;
 
 /**
@@ -86,6 +87,11 @@ public class SalarieView extends javax.swing.JPanel {
         });
 
         btnModifSalarie.setText("Modifier");
+        btnModifSalarie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifSalarieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,6 +137,10 @@ public class SalarieView extends javax.swing.JPanel {
         listeners.firePropertyChange("openAjoutSalarie", null, null);
     }//GEN-LAST:event_btnAjoutSalarieActionPerformed
 
+    private void btnModifSalarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifSalarieActionPerformed
+        if (this.tableSalaries.getSelectedRow() > -1) listeners.firePropertyChange("openModifSalarie", null, null);
+    }//GEN-LAST:event_btnModifSalarieActionPerformed
+
     public void hideSalarieIdColumn() {
         this.tableSalaries.removeColumn(this.tableSalaries.getColumnModel().getColumn(0));
     }
@@ -156,15 +166,51 @@ public class SalarieView extends javax.swing.JPanel {
     }
     
     public String getSalDate(){
+        
         return this.salarieEditPanel.getDate();
     }
     
-    public int getSalServiceId(){
-        return this.salarieEditPanel.getServiceId();
+    public int getSalServiceIndex(){
+        return this.salarieEditPanel.getServiceIndex();
+    }
+    
+   public void setSalarieNom(String nom){
+       this.salarieEditPanel.setNomText(nom);
+   }
+   
+   public void setSalariePrenom(String prenom){
+       this.salarieEditPanel.setPrenomText(prenom);
+   }
+   
+   public void setSalarieFonction(String fonction){
+       this.salarieEditPanel.setFonctionText(fonction);
+   }
+   
+   public void setSalarieDateNaissance(String date){
+       this.salarieEditPanel.setDateNaissanceText(date);
+   }
+   
+   public void setSelectedService(Service service){
+       this.salarieEditPanel.setSelectedService(service);
+   }
+   
+    
+    public String[] getSelectedSalarieRow() {
+        int row = this.tableSalaries.getSelectedRow();
+        String id = this.tableSalaries.getModel().getValueAt(row, 0).toString();
+        String nom = this.tableSalaries.getModel().getValueAt(row, 1).toString();
+        String prenom = this.tableSalaries.getModel().getValueAt(row, 2).toString();
+        String fonction = this.tableSalaries.getModel().getValueAt(row, 3).toString();
+        String date = this.tableSalaries.getModel().getValueAt(row, 4).toString();
+        String serviceId = this.tableSalaries.getModel().getValueAt(row, 5).toString();
+        String[] selected = {id, nom, prenom,fonction,date,serviceId};
+
+        return selected;
     }
     
     public void openAjoutSal() {
         String[] options = {"Valider", "Annuler"};
+        
 
         // La méthode la plus générale pour ouvrir une boite de dialogue...
         int result = JOptionPane.showOptionDialog(
@@ -182,6 +228,28 @@ public class SalarieView extends javax.swing.JPanel {
             // ...envoi de la notification "validAjoutModifEtudiant" au contrôleur
             listeners.firePropertyChange("validAjoutSalarie", null, null);
         }
+    }
+    
+    public void openModifSal(){
+       String[] options = {"Valider", "Annuler"};
+       
+
+        // La méthode la plus générale pour ouvrir une boite de dialogue...
+        int result = JOptionPane.showOptionDialog(
+                this, // le composant parent de la boite (ici, le JFrame)
+                this.salarieEditPanel, // contenu de la boite (ici, JPanel défini ailleurs)
+                "Ajout d'un nouveau salarié", // le titre de la boite
+                JOptionPane.OK_CANCEL_OPTION, // boutons à afficher (cf constantes JOptionPane)
+                JOptionPane.PLAIN_MESSAGE, // style du message
+                null, // pas d'icone à afficher
+                options, // texte des boutons
+                options[0] // bouton par défaut
+        );
+
+        if (result == JOptionPane.OK_OPTION) { // si l'utilisateur a validé...
+            // ...envoi de la notification "validAjoutModifEtudiant" au contrôleur
+            listeners.firePropertyChange("validModifSalarie", null, null);
+        } 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjoutSalarie;

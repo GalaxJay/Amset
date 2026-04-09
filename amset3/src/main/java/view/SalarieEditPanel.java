@@ -72,8 +72,6 @@ public class SalarieEditPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Service :");
 
-        textDateNaissance.setText("AAAA-MM-JJ");
-
         jLabel5.setText("Date :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -138,9 +136,8 @@ public class SalarieEditPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_textFonctionActionPerformed
 
     private void comboServiceSalarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboServiceSalarieActionPerformed
-       this.comboServiceSalarie.getModel();
+       
         this.comboServiceSalarie.getModel().getElementAt(this.comboServiceSalarie.getSelectedIndex());
-        System.out.print(this.comboServiceSalarie.getSelectedIndex());
        
         
     }//GEN-LAST:event_comboServiceSalarieActionPerformed
@@ -165,10 +162,30 @@ public class SalarieEditPanel extends javax.swing.JPanel {
         return this.textDateNaissance.getText();
     }
     
-    public int getServiceId(){
-       return Integer.parseInt(this.comboServiceSalarie.getModel().getElementAt(this.comboServiceSalarie.getSelectedIndex()));
+    public int getServiceIndex(){
+       return this.comboServiceSalarie.getSelectedIndex();
        
     }
+    
+    public void setNomText(String nom){
+       this.textNom.setText(nom);
+    }
+    
+    public void setPrenomText(String prenom){
+       this.textPrenom.setText(prenom);
+    }
+    
+    public void setFonctionText(String fonction){
+       this.textFonction.setText(fonction);
+    }
+    
+   public void setDateNaissanceText(String dateNaissance){
+       this.textDateNaissance.setText(dateNaissance);
+    }
+   
+   public void setSelectedService(Service service){
+       this.comboServiceSalarie.setSelectedItem(service);
+   }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

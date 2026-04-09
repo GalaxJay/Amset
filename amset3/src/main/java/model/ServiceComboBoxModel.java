@@ -56,6 +56,15 @@ public class ServiceComboBoxModel implements ComboBoxModel{
         return this.services.get(index);
     }
 
+   public Service getService(int id){
+       for (Service s : services){
+           if(s.getId()==id){
+               return s;
+           }
+       }
+       return null;
+   }
+          
 
     @Override
     public void addListDataListener(ListDataListener l) {

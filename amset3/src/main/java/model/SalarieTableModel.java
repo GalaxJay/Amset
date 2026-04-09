@@ -60,8 +60,14 @@ public class SalarieTableModel extends AbstractTableModel{
       }
     }
     
-    public void addSalarie(String salNom,String salPrenom,String salFonction,Date date,int salIdService){
-        
+    public void addSalarie(String salNom,String salPrenom,String salFonction,Date date,int salIdService){ 
+        this.salDao.insertSalarie(salNom, salPrenom, salFonction, date, salIdService);
+        this.refresh();
+    }
+    
+    public void modifSalarie(int id,String salNom,String salPrenom,String salFonction,Date date,int salIdService){ 
+        this.salDao.updateSalarie(id, salNom, salPrenom, salFonction, date, salIdService);
+        this.refresh();
     }
 
     private void refresh() {

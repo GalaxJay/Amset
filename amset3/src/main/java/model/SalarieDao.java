@@ -42,6 +42,7 @@ public class SalarieDao {
                 
 
                 salarieList.add(new Salarie(id, nom, prenom, fonction, dateNaissance, serviceId));
+                
             }
 
             return salarieList;
@@ -52,9 +53,9 @@ public class SalarieDao {
 
     }
     
-    public void addSalarie(String nom, String prenom, String fonction,Date date,int serviceId) {
+    public void insertSalarie(String nom, String prenom, String fonction,Date date,int serviceId) {
         try {
-            String query = "insert into salarie( nom, prenom, fonction, date, serviceId) VALUES (?, ?, ?, ?, ?)";
+            String query = "insert into salarie( nom, prenom, fonction, date_naissance, service_id) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = this.connexion.prepareStatement(query);
             ps.setString(1, nom);
             ps.setString(2 , prenom);
@@ -65,10 +66,27 @@ public class SalarieDao {
 
         } catch (SQLException ex) {
             Logger.getLogger(SalarieDao.class.getName()).log(Level.SEVERE, null, ex);
-
         }
 
 
+    }
+    
+    public void updateSalarie(int id,String nom, String prenom, String fonction,Date date,int serviceId) {
+        try {
+            String query = "UPDATE salarie SET nom = ?, prenom = ?, fonction = ?, date_naissance = ?, service_id = ? WHERE id = ?";
+            PreparedStatement ps = this.connexion.prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            ps.setString(3, fonction);
+            ps.setDate(4, date);
+            ps.setInt(5, serviceId);
+            ps.setInt(6, id);
+            int n = ps.executeUpdate();
+            // n contient l'id généré lors de l'insertion en base
+            // ici on le récupère car c'est un insert (inutile dans le cas d'un update ou d'un delete)
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
     
