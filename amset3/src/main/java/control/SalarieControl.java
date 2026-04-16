@@ -48,6 +48,7 @@ public class SalarieControl implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
             case "openAjoutSalarie":
+                this.serviceComboBoxModel.refresh();
                 this.salarieView.setSalarieNom("");
                 this.salarieView.setSalariePrenom("");
                 this.salarieView.setSalarieFonction("");
@@ -57,6 +58,7 @@ public class SalarieControl implements PropertyChangeListener {
                 this.salarieView.openAjoutSal();
                 break;
             case "openModifSalarie":
+                this.serviceComboBoxModel.refresh();
                 String[] value = this.salarieView.getSelectedSalarieRow();
                 idSelected = Integer.parseInt(value[0]);
                 this.salarieView.setSalarieNom(value[1]);
