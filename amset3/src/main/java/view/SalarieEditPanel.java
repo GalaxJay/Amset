@@ -187,6 +187,9 @@ public class SalarieEditPanel extends javax.swing.JPanel {
        this.comboServiceSalarie.setSelectedItem(service);
    }
     
+  public void setPanelLabel(String nom){
+      this.labelEditSalarie.setText(nom);
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboServiceSalarie;

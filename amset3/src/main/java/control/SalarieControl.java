@@ -53,6 +53,7 @@ public class SalarieControl implements PropertyChangeListener {
                 this.salarieView.setSalarieFonction("");
                 this.salarieView.setSalarieDateNaissance("AAAA-MM-DD");
                 this.salarieView.setSelectedService(this.serviceComboBoxModel.getElementAt(0));
+                this.salarieView.setPanelLabel("Ajout d'un salarié");
                 this.salarieView.openAjoutSal();
                 break;
             case "openModifSalarie":
@@ -63,6 +64,7 @@ public class SalarieControl implements PropertyChangeListener {
                 this.salarieView.setSalarieFonction(value[3]);
                 this.salarieView.setSalarieDateNaissance(value[4]);
                 this.salarieView.setSelectedService(this.serviceComboBoxModel.getService(Integer.parseInt(value[5])));
+                this.salarieView.setPanelLabel("Modification d'un salarié");
                 this.salarieView.openModifSal();
                 break;
             case "openSupprSalarie":

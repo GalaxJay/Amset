@@ -215,6 +215,10 @@ public class SalarieView extends javax.swing.JPanel {
        this.salarieEditPanel.setSelectedService(service);
    }
    
+   public void setPanelLabel(String nom){
+       this.salarieEditPanel.setPanelLabel(nom);
+   }
+   
    
     
     public String[] getSelectedSalarieRow() {
@@ -254,13 +258,12 @@ public class SalarieView extends javax.swing.JPanel {
     
     public void openModifSal(){
        String[] options = {"Valider", "Annuler"};
-       
-
+        
         // La méthode la plus générale pour ouvrir une boite de dialogue...
         int result = JOptionPane.showOptionDialog(
                 this, // le composant parent de la boite (ici, le JFrame)
                 this.salarieEditPanel, // contenu de la boite (ici, JPanel défini ailleurs)
-                "Ajout d'un nouveau salarié", // le titre de la boite
+                "Modification d'un nouveau salarié", // le titre de la boite
                 JOptionPane.OK_CANCEL_OPTION, // boutons à afficher (cf constantes JOptionPane)
                 JOptionPane.PLAIN_MESSAGE, // style du message
                 null, // pas d'icone à afficher
