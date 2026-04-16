@@ -103,7 +103,8 @@ public class MainView extends javax.swing.JFrame {
         cardLayout.show(mainPanel, "cardSalarie");
     }//GEN-LAST:event_salarieItemActionPerformed
 
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanel;
